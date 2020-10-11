@@ -1,7 +1,14 @@
 import React from 'react';
 
+import GlobalStyle, { BackgroundContainer } from './styles/global';
+
 const App: React.FC = () => {
-  return <h1>Hello World!</h1>;
+  return (
+    <>
+      <BackgroundContainer />
+      <GlobalStyle />
+    </>
+  );
 };
 
 export default App;
