@@ -2,16 +2,14 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Routes from './routes';
-import GlobalStyle, { BackgroundContainer } from './styles/global';
+import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
   return (
     <>
-      <BackgroundContainer>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </BackgroundContainer>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
       <GlobalStyle />
     </>
   );

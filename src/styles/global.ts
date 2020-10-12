@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 import backgroundImg from '../assets/background.jpg';
 
@@ -11,8 +11,14 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  #root {
+    width: 100vw;
+    height: 100vh;
+    background: url(${backgroundImg}) no-repeat center;
+    background-size: cover;
+  }
+
   body {
-    color: white;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -29,11 +35,8 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-`;
+  a {
+    text-decoration: none;
+  }
 
-export const BackgroundContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: url(${backgroundImg}) no-repeat center;
-  background-size: cover;
 `;

@@ -6,8 +6,8 @@ import { Container } from './styled';
 const Styled: React.FC = () => {
   return (
     <Container>
-      <Link to="/">
-        <AiOutlinePlayCircle size={16} />
+      <Link to="/normal-game">
+        <AiOutlinePlayCircle size={85} />
         JOGAR
       </Link>
     </Container>
