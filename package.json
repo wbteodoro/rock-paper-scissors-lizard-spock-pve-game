@@ -6,6 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "yarn test --coverage --watchAll false",
     "eject": "react-scripts eject",
     "prettier": "prettier --write ./src"
   },
@@ -13,7 +14,9 @@
     "extends": "react-app"
   },
   "jest": {
-    "collectCoverageFrom": []
+    "collectCoverageFrom": [
+      "src/pages/**/*.tsx"
+    ]
   },
   "browserslist": {
     "production": [
@@ -33,7 +36,7 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "3.4.0",
     "styled-components": "^5.2.0",
     "typescript": "~3.7.2"
   },

@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { AiOutlinePlayCircle } from 'react-icons/all';
-import { Container } from './styled';
+import { useHistory } from 'react-router-dom';
+import { FaRegPlayCircle } from 'react-icons/fa';
+import { Container, Button } from './styled';
 
-const Styled: React.FC = () => {
+const Home: React.FC = () => {
+  const history = useHistory();
+
   return (
     <Container>
-      <Link to="/normal-game">
-        <AiOutlinePlayCircle size={85} />
+      <Button onClick={() => history.push('/normal-game')}>
+        <FaRegPlayCircle size={85} />
         JOGAR
-      </Link>
+      </Button>
     </Container>
   );
 };
 
-export default Styled;
+export default Home;

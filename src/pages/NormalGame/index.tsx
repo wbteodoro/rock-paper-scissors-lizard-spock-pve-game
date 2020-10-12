@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AiOutlineQuestionCircle, BsArrowLeft } from 'react-icons/all';
+import { FaRegQuestionCircle, FaLongArrowAltLeft } from 'react-icons/fa';
 
 import logoOption from '../../assets/play.svg';
 
@@ -21,7 +21,7 @@ interface HandOptionsProps {
   logo: string;
 }
 
-const Index: React.FC = () => {
+const NormalGame: React.FC = () => {
   const [handOptions] = useState<HandOptionsProps[]>([
     { name: 'Pedra', logo: logoOption },
     { name: 'Papel', logo: logoOption },
@@ -46,14 +46,14 @@ const Index: React.FC = () => {
     <Container>
       <Content>
         <Link to="/">
-          <BsArrowLeft />
+          <FaLongArrowAltLeft />
           Início
         </Link>
         <CardBattle>
           <PlayerSide>
             <span>VOCÊ</span>
             <CardChosenOption>
-              <AiOutlineQuestionCircle size={115} />
+              <FaRegQuestionCircle size={115} />
             </CardChosenOption>
           </PlayerSide>
 
@@ -62,7 +62,7 @@ const Index: React.FC = () => {
           <PlayerSide>
             <span>COMPUTADOR</span>
             <CardChosenOption>
-              <AiOutlineQuestionCircle size={115} />
+              <FaRegQuestionCircle size={115} />
             </CardChosenOption>
           </PlayerSide>
         </CardBattle>
@@ -86,4 +86,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default NormalGame;
