@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => {
 });
 
 describe('Home page', () => {
-  it('should be able to direct to the normal game page', async () => {
+  it('should be able to direct to the normal game page', () => {
     const { getByText } = render(<Home />);
 
     const buttonElement = getByText('JOGAR');

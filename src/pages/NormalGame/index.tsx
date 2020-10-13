@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { FaRegQuestionCircle, FaLongArrowAltLeft } from 'react-icons/fa';
+import {
+  FaRegQuestionCircle,
+  FaLongArrowAltLeft,
+  FaRedoAlt,
+} from 'react-icons/fa';
 
 import logoOption from '../../assets/play.svg';
 
@@ -14,14 +18,25 @@ import {
   Options,
   CardOption,
   OptionsList,
+  BackToHomeButton,
+  CardResult,
+  ResultDisplay,
 } from './styles';
+import { compareHands } from '../../utils/compareHands';
 
 interface HandOptionsProps {
   name: string;
   logo: string;
 }
 
+interface Result {
+  compareResult: 'Empate' | 'Ganhou' | 'Perdeu' | '';
+  message: string;
+}
+
 const NormalGame: React.FC = () => {
+  const history = useHistory();
+
   const [handOptions] = useState<HandOptionsProps[]>([
     { name: 'Pedra', logo: logoOption },
     { name: 'Papel', logo: logoOption },
@@ -30,39 +45,112 @@ const NormalGame: React.FC = () => {
     { name: 'Spock', logo: logoOption },
   ]);
 
-  function handleSelectOption(nameOption: string): void {
-    console.log(nameOption);
-  }
+  const [playerSelectedHand, setPlayerSelectedHand] = useState<
+    HandOptionsProps
+  >({
+    name: '',
+    logo: '',
+  });
+  const [computerGeneratedHand, setComputerGeneratedHand] = useState<
+    HandOptionsProps
+  >({
+    name: '',
+    logo: '',
+  });
 
-  function generateRandomOptionForOpponent(): void {
-    console.log('teste');
-  }
+  const [result, setResult] = useState<Result>({
+    compareResult: '',
+    message: '',
+  });
 
-  function compareHands(): void {
-    console.log('');
-  }
+  const handleSelectOption = ({ name, logo }: HandOptionsProps): void => {
+    setPlayerSelectedHand({ name, logo });
+
+    const randomIndex = Math.floor(Math.random() * 5);
+    setComputerGeneratedHand(handOptions[randomIndex]);
+
+    const { compareResult, message } = compareHands({
+      playerHand: name,
+      opponentHand: handOptions[randomIndex].name,
+    });
+    setResult({ compareResult, message });
+  };
+
+  const restartGame = (): void => {
+    setResult({ compareResult: '', message: '' });
+    setPlayerSelectedHand({ name: '', logo: '' });
+    setComputerGeneratedHand({ name: '', logo: '' });
+  };
 
   return (
     <Container>
       <Content>
-        <Link to="/">
+        <BackToHomeButton onClick={() => history.push('/')}>
           <FaLongArrowAltLeft />
           Início
-        </Link>
+        </BackToHomeButton>
         <CardBattle>
           <PlayerSide>
             <span>VOCÊ</span>
-            <CardChosenOption>
-              <FaRegQuestionCircle size={115} />
+            <CardChosenOption
+              side="player"
+              result={result.compareResult}
+              data-testid="player-side"
+            >
+              {!playerSelectedHand.name ? (
+                <FaRegQuestionCircle size={115} />
+              ) : (
+                <img
+                  src={playerSelectedHand.logo}
+                  alt={playerSelectedHand.name}
+                />
+              )}
+
+              {!!playerSelectedHand?.name && (
+                <span>{playerSelectedHand.name}</span>
+              )}
             </CardChosenOption>
           </PlayerSide>
 
-          <span>vs</span>
+          <CardResult>
+            {!result.compareResult ? (
+              <span>vs</span>
+            ) : (
+              <>
+                <span>vs</span>
+                <ResultDisplay result={result.compareResult}>
+                  {result.compareResult === 'Empate'
+                    ? 'EMPATE!'
+                    : `VOCÊ ${result.compareResult.toUpperCase()}!`}
+                </ResultDisplay>
+                <span>{result.message}</span>
+                <button type="button" onClick={restartGame}>
+                  <FaRedoAlt size={20} />
+                  JOGAR NOVAMENTE
+                </button>
+              </>
+            )}
+          </CardResult>
 
           <PlayerSide>
             <span>COMPUTADOR</span>
-            <CardChosenOption>
-              <FaRegQuestionCircle size={115} />
+            <CardChosenOption
+              side="computer"
+              result={result.compareResult}
+              data-testid="computer-side"
+            >
+              {!computerGeneratedHand.name ? (
+                <FaRegQuestionCircle size={115} />
+              ) : (
+                <img
+                  src={computerGeneratedHand.logo}
+                  alt={computerGeneratedHand.name}
+                />
+              )}
+
+              {!!computerGeneratedHand?.name && (
+                <span>{computerGeneratedHand.name}</span>
+              )}
             </CardChosenOption>
           </PlayerSide>
         </CardBattle>
@@ -72,8 +160,13 @@ const NormalGame: React.FC = () => {
           <OptionsList>
             {handOptions.map(option => (
               <CardOption
+                selected={option.name === playerSelectedHand.name}
+                disabled={!!result.compareResult}
+                data-testid={`${option.name}-option`}
                 key={option.name}
-                onClick={() => handleSelectOption(option.name)}
+                onClick={() =>
+                  handleSelectOption({ name: option.name, logo: option.logo })
+                }
               >
                 <img src={option.logo} alt={option.name} />
                 <span>{option.name}</span>
