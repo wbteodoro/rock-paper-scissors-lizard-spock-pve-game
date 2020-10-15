@@ -17,7 +17,16 @@ Este repositório contém o projeto de uma releitura do jogo Pedra, Papel, Tesou
 > #### `yarn start`
 >
 > Aguarde um pouco o carregamento no terminal e o projeto deverá abrir automaticamente no seu navegador. Caso isso não ocorra, digite no navegador [http://localhost:3000](http://localhost:3000).
+>
+> Para rodar o projeto em produção acesse: https://inspiring-dubinsky-2fd98a.netlify.app/
+>
+> Ou se desejar acessar pelo smartphone:
+>
+>![Alt text](./src/assets/qr_code.png)
+
 
 <br />
 
-### `yarn test`
+- Para fazer o teste unitário do projeto:
+
+> #### `yarn test:coverage`
