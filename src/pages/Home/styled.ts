@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div`
-  height: 100%;
-  width: 100%;
+export const Content = styled.div`
+  flex: 1;
   display: flex;
+  height: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -19,6 +20,7 @@ export const Button = styled.button`
   font-weight: 400;
   border: none;
   border-radius: 12px;
+  margin-bottom: 20px;
   transition: background 0.2s;
 
   display: flex;
@@ -31,5 +33,41 @@ export const Button = styled.button`
 
   &:hover {
     background: ${shade(0.2, '#884bb7')};
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    font-size: 50px;
+
+    svg {
+      margin-right: 15px;
+      width: 50px;
+      height: auto;
+    }
+  }
+`;
+
+export const SecondaryButton = styled.button`
+  width: 480px;
+  height: auto;
+  padding: 10px;
+  background: #884bb7;
+  color: #fff;
+  font-size: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: background 0.2s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: ${shade(0.2, '#884bb7')};
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    font-size: 40px;
   }
 `;

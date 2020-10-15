@@ -15,17 +15,6 @@ interface CardOptionProps {
   disabled: boolean;
 }
 
-export const Container = styled.div`
-  max-width: 1028px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 40px 20px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const Content = styled.div`
   flex: 1;
   display: flex;
@@ -36,7 +25,7 @@ export const Content = styled.div`
 
 export const CardBattle = styled.div`
   height: 300px;
-
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,6 +33,18 @@ export const CardBattle = styled.div`
   padding: 0 102px;
   color: #fff;
   background-color: ${transparentize(0.4, '#884BB7')};
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+
+    div + div {
+      margin-top: 25px;
+    }
+  }
 `;
 
 export const PlayerSide = styled.div`
@@ -53,6 +54,21 @@ export const PlayerSide = styled.div`
 
   > span {
     font-size: 30px;
+  }
+
+  @media (max-width: 900px) {
+    width: 100%;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+
+    > span {
+      font-size: 25px;
+    }
+
+    & + div {
+      margin-top: 20px;
+    }
   }
 `;
 
@@ -107,6 +123,60 @@ export const CardChosenOption = styled.div<CardChosenOptionProps>`
   svg {
     color: ${transparentize(0.7, '#000')};
   }
+
+  > img {
+    width: 90px;
+    height: auto;
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 900px) {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    margin: 0 20px 0 0;
+
+    > img {
+      margin-right: 10px;
+      width: 50px;
+      height: auto;
+    }
+
+    > svg {
+      width: 80px;
+      height: auto;
+    }
+  }
+`;
+
+export const ResultDisplay = styled.h2<ResultDisplayProps>`
+  font-size: 40px;
+  margin-top: 10px;
+
+  ${({ result }) => {
+    if (result === 'Ganhou')
+      return css`
+        color: #1c9708;
+      `;
+
+    if (result === 'Perdeu')
+      return css`
+        color: #ff0000;
+      `;
+
+    if (result === 'Empate')
+      return css`
+        color: #1b4fd0;
+      `;
+
+    return css`
+      color: #fff;
+    `;
+  }};
+
+  @media (max-width: 1028px) {
+    font-size: 30px;
+  }
 `;
 
 export const Options = styled.div`
@@ -116,11 +186,19 @@ export const Options = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  > span {
+  > strong {
     margin: 25px 0 15px 0;
     color: #fff;
     font-size: 30px;
     font-weight: 400;
+  }
+
+  @media (max-width: 900px) {
+    > strong {
+      margin: 25px 0 15px 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
   }
 `;
 
@@ -129,6 +207,10 @@ export const OptionsList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 export const CardOption = styled.button<CardOptionProps>`
@@ -173,6 +255,23 @@ export const CardOption = styled.button<CardOptionProps>`
   > span {
     color: #fff;
     font-size: 30px;
+  }
+
+  @media (max-width: 900px) {
+    width: 100%;
+    padding: 10px;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+    > img {
+      width: 50px;
+      height: auto;
+      margin: 0 15px 0 40px;
+    }
   }
 `;
 
@@ -233,30 +332,15 @@ export const CardResult = styled.div`
       background: ${shade(0.2, '#884bb7')};
     }
   }
-`;
 
-export const ResultDisplay = styled.h2<ResultDisplayProps>`
-  font-size: 40px;
-  margin-top: 10px;
+  @media (max-width: 900px) {
+    justify-content: center;
+    order: 1;
+    margin: 10px 0 10px 0;
 
-  ${({ result }) => {
-    if (result === 'Ganhou')
-      return css`
-        color: #1c9708;
-      `;
+    button {
+      margin: 0;
+    }
+  }
 
-    if (result === 'Perdeu')
-      return css`
-        color: #ff0000;
-      `;
-
-    if (result === 'Empate')
-      return css`
-        color: #1b4fd0;
-      `;
-
-    return css`
-      color: #fff;
-    `;
-  }}
 `;

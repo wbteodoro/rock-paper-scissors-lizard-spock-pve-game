@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -7,10 +7,13 @@ import {
   FaRedoAlt,
 } from 'react-icons/fa';
 
-import logoOption from '../../assets/play.svg';
+import rockLogo from '../../assets/rock.png';
+import lizardLogo from '../../assets/lizard.png';
+import paperLogo from '../../assets/paper.png';
+import scissorsLogo from '../../assets/scissors.png';
+import spockLogo from '../../assets/spock.png';
 
 import {
-  Container,
   Content,
   CardBattle,
   PlayerSide,
@@ -22,6 +25,7 @@ import {
   CardResult,
   ResultDisplay,
 } from './styles';
+import Container from '../../components/Container';
 import { compareHands } from '../../utils/compareHands';
 
 interface HandOptionsProps {
@@ -38,11 +42,11 @@ const NormalGame: React.FC = () => {
   const history = useHistory();
 
   const [handOptions] = useState<HandOptionsProps[]>([
-    { name: 'Pedra', logo: logoOption },
-    { name: 'Papel', logo: logoOption },
-    { name: 'Tesoura', logo: logoOption },
-    { name: 'Lagarto', logo: logoOption },
-    { name: 'Spock', logo: logoOption },
+    { name: 'Pedra', logo: rockLogo },
+    { name: 'Papel', logo: paperLogo },
+    { name: 'Tesoura', logo: scissorsLogo },
+    { name: 'Lagarto', logo: lizardLogo },
+    { name: 'Spock', logo: spockLogo },
   ]);
 
   const [playerSelectedHand, setPlayerSelectedHand] = useState<
@@ -110,29 +114,20 @@ const NormalGame: React.FC = () => {
             </CardChosenOption>
           </PlayerSide>
 
-          <CardResult>
-            {!result.compareResult ? (
-              <span data-testid="emptyResult">vs</span>
-            ) : (
-              <>
-                <span data-testid="filledResult">vs</span>
-                <ResultDisplay id="resultDisplay" result={result.compareResult}>
-                  {result.compareResult === 'Empate'
-                    ? 'EMPATE!'
-                    : `VOCÊ ${result.compareResult.toUpperCase()}!`}
-                </ResultDisplay>
-                <span>{result.message}</span>
-                <button
-                  id="buttonPlayAgain"
-                  type="button"
-                  onClick={restartGame}
-                >
-                  <FaRedoAlt size={20} />
-                  JOGAR NOVAMENTE
-                </button>
-              </>
-            )}
-          </CardResult>
+          {result.compareResult && (
+            <CardResult>
+              <ResultDisplay id="resultDisplay" result={result.compareResult}>
+                {result.compareResult === 'Empate'
+                  ? 'EMPATE!'
+                  : `VOCÊ ${result.compareResult.toUpperCase()}!`}
+              </ResultDisplay>
+              <span>{result.message}</span>
+              <button id="buttonPlayAgain" type="button" onClick={restartGame}>
+                <FaRedoAlt size={20} />
+                JOGAR NOVAMENTE
+              </button>
+            </CardResult>
+          )}
 
           <PlayerSide>
             <span>COMPUTADOR</span>
@@ -154,7 +149,7 @@ const NormalGame: React.FC = () => {
         </CardBattle>
 
         <Options>
-          <span>ESCOLHA UMA OPÇÃO</span>
+          <strong>ESCOLHA UMA OPÇÃO</strong>
           <OptionsList>
             {handOptions.map(option => (
               <CardOption

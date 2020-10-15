@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

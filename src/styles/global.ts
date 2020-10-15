@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-import backgroundImg from '../assets/background.jpg';
+import backgroundImg from '../assets/background_01.jpg';
+import backgroundImgMobile from '../assets/background_mobile.jpg';
 
 export default createGlobalStyle`
 
@@ -14,12 +15,19 @@ export default createGlobalStyle`
   #root {
     width: 100vw;
     height: 100vh;
-    background: url(${backgroundImg}) no-repeat center;
-    background-size: cover;
+
+
   }
 
   body {
     -webkit-font-smoothing: antialiased;
+    background: url(${backgroundImg}) no-repeat center fixed;
+    background-size: cover;
+
+    // @media (max-width: 900px) {
+    //   background: url(${backgroundImg}) no-repeat center fixed;
+    //   background-size: cover;
+    // }
   }
 
   body, input, button {
