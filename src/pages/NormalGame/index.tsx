@@ -92,11 +92,7 @@ const NormalGame: React.FC = () => {
         <CardBattle>
           <PlayerSide>
             <span>VOCÊ</span>
-            <CardChosenOption
-              side="player"
-              result={result.compareResult}
-              data-testid="player-side"
-            >
+            <CardChosenOption side="player" result={result.compareResult}>
               {!playerSelectedHand.name ? (
                 <FaRegQuestionCircle size={115} />
               ) : (
@@ -106,25 +102,31 @@ const NormalGame: React.FC = () => {
                 />
               )}
 
-              {!!playerSelectedHand?.name && (
-                <span>{playerSelectedHand.name}</span>
+              {!!playerSelectedHand.name && (
+                <span data-testid="playerSelectedHand">
+                  {playerSelectedHand.name}
+                </span>
               )}
             </CardChosenOption>
           </PlayerSide>
 
           <CardResult>
             {!result.compareResult ? (
-              <span>vs</span>
+              <span data-testid="emptyResult">vs</span>
             ) : (
               <>
-                <span>vs</span>
-                <ResultDisplay result={result.compareResult}>
+                <span data-testid="filledResult">vs</span>
+                <ResultDisplay id="resultDisplay" result={result.compareResult}>
                   {result.compareResult === 'Empate'
                     ? 'EMPATE!'
                     : `VOCÊ ${result.compareResult.toUpperCase()}!`}
                 </ResultDisplay>
                 <span>{result.message}</span>
-                <button type="button" onClick={restartGame}>
+                <button
+                  id="buttonPlayAgain"
+                  type="button"
+                  onClick={restartGame}
+                >
                   <FaRedoAlt size={20} />
                   JOGAR NOVAMENTE
                 </button>
@@ -134,11 +136,7 @@ const NormalGame: React.FC = () => {
 
           <PlayerSide>
             <span>COMPUTADOR</span>
-            <CardChosenOption
-              side="computer"
-              result={result.compareResult}
-              data-testid="computer-side"
-            >
+            <CardChosenOption side="computer" result={result.compareResult}>
               {!computerGeneratedHand.name ? (
                 <FaRegQuestionCircle size={115} />
               ) : (
@@ -160,6 +158,7 @@ const NormalGame: React.FC = () => {
           <OptionsList>
             {handOptions.map(option => (
               <CardOption
+                id={`${option.name}-option`}
                 selected={option.name === playerSelectedHand.name}
                 disabled={!!result.compareResult}
                 data-testid={`${option.name}-option`}
