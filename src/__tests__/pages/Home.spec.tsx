@@ -25,4 +25,15 @@ describe('Home page', () => {
 
     expect(mockedHistoryPush).toHaveBeenCalledWith('/normal-game');
   });
+
+  it('should be able to direct to the about game page', () => {
+    const { getByText } = render(<Home />);
+
+    const buttonElement = getByText('SOBRE O JOGO');
+
+    userEvent.click(buttonElement);
+
+    expect(mockedHistoryPush).toHaveBeenCalledWith('/about');
+  });
+
 });

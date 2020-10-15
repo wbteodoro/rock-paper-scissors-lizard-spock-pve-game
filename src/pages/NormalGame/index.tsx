@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { FaRegQuestionCircle, FaRedoAlt } from 'react-icons/fa';
 
-import {
-  FaRegQuestionCircle,
-  FaLongArrowAltLeft,
-  FaRedoAlt,
-} from 'react-icons/fa';
+import Container from '../../components/Container';
+import BackToHomeButton from '../../components/BackToHomeButton';
 
-import rockLogo from '../../assets/rock.png';
-import lizardLogo from '../../assets/lizard.png';
-import paperLogo from '../../assets/paper.png';
-import scissorsLogo from '../../assets/scissors.png';
-import spockLogo from '../../assets/spock.png';
+import { compareHands } from '../../utils/compareHands';
 
 import {
   Content,
@@ -21,15 +14,18 @@ import {
   Options,
   CardOption,
   OptionsList,
-  BackToHomeButton,
   CardResult,
   ResultDisplay,
 } from './styles';
-import Container from '../../components/Container';
-import { compareHands } from '../../utils/compareHands';
+
+import rockLogo from '../../assets/rock.png';
+import lizardLogo from '../../assets/lizard.png';
+import paperLogo from '../../assets/paper.png';
+import scissorsLogo from '../../assets/scissors.png';
+import spockLogo from '../../assets/spock.png';
 
 interface HandOptionsProps {
-  name: string;
+  name: 'Pedra' | 'Papel' | 'Tesoura' | 'Lagarto' | 'Spock' | '';
   logo: string;
 }
 
@@ -39,8 +35,6 @@ interface Result {
 }
 
 const NormalGame: React.FC = () => {
-  const history = useHistory();
-
   const [handOptions] = useState<HandOptionsProps[]>([
     { name: 'Pedra', logo: rockLogo },
     { name: 'Papel', logo: paperLogo },
@@ -89,10 +83,7 @@ const NormalGame: React.FC = () => {
   return (
     <Container>
       <Content>
-        <BackToHomeButton onClick={() => history.push('/')}>
-          <FaLongArrowAltLeft />
-          Início
-        </BackToHomeButton>
+        <BackToHomeButton />
         <CardBattle>
           <PlayerSide>
             <span>VOCÊ</span>
