@@ -18,6 +18,7 @@ export const PageText = styled.div`
   padding: 40px;
   text-align: justify;
   border-radius: 15px;
+  margin-bottom: 25px;
 
   ol {
     margin-left: 40px;
