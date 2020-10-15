@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 import backgroundImg from '../assets/background_01.jpg';
-import backgroundImgMobile from '../assets/background_mobile.jpg';
 
 export default createGlobalStyle`
 
@@ -23,11 +22,6 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background: url(${backgroundImg}) no-repeat center fixed;
     background-size: cover;
-
-    // @media (max-width: 900px) {
-    //   background: url(${backgroundImg}) no-repeat center fixed;
-    //   background-size: cover;
-    // }
   }
 
   body, input, button {
