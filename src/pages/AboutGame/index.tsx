@@ -29,10 +29,10 @@ const AboutGame: React.FC = () => {
           <br />
           <br />
           <ol>
-            <li>Tesoura corta papel</li>
-            <li>Papel cobre pedra</li>
-            <li>Pedra esmaga lagarto</li>
-            <li>Lagarto envenena Spock</li>
+            <li>Tesoura corta papel;</li>
+            <li>Papel cobre pedra;</li>
+            <li>Pedra esmaga lagarto;</li>
+            <li>Lagarto envenena Spock;</li>
             <li>Spock esmaga tesoura;</li>
             <li>Tesoura decapita lagarto;</li>
             <li>Lagarto come papel;</li>
