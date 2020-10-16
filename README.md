@@ -4,6 +4,14 @@ Este repositório contém o projeto de uma releitura do jogo Pedra, Papel, Tesou
 
 <br />
 
+Projeto executado com os seguintes requisitos:
+
+Node: v12.16.1
+<br />
+Yarn: v1.21.1
+<br />
+Ubuntu: v18.04LTS
+
  - Ao baixar o repositório, abra o terminal dentro da pasta do projeto, e execute:
 
 > #### `yarn install`
