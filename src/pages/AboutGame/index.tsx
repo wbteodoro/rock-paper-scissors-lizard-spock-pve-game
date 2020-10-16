@@ -2,6 +2,8 @@ import React from 'react';
 import Container from '../../components/Container';
 import BackToHomeButton from '../../components/BackToHomeButton';
 
+import gameRuleImg from '../../assets/game_rule.png';
+
 import { PageText, Content } from './styles';
 
 const AboutGame: React.FC = () => {
@@ -11,6 +13,8 @@ const AboutGame: React.FC = () => {
         <BackToHomeButton />
         <PageText>
           <h1>Sobre o jogo</h1>
+          <br />
+          <img src={gameRuleImg} alt="Regra do jogo" />
           <br />
           <p>
             Pedra-papel-tesoura-lagarto-Spock é uma expansão do clássico método

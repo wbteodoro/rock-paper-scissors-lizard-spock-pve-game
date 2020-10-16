@@ -6,8 +6,21 @@ export const Content = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+
+  img {
+    height: 250px;
+    width: auto;
+  }
+
+  @media (max-width: 900px) {
+    img {
+      height: auto;
+      width: 350px;
+    }
+  }
+
 `;
 
 export const Button = styled.button`

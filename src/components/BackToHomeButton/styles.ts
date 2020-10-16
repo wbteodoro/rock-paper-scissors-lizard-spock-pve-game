@@ -9,7 +9,6 @@ export const ButtonLink = styled.button`
   background: none;
   border: none;
   width: auto;
-  margin: 0 auto 40px 0;
 
   display: flex;
   align-items: center;
@@ -22,4 +21,33 @@ export const ButtonLink = styled.button`
   &:hover {
     color: ${shade(0.2, '#fff')};
   }
+
+  @media (max-width: 900px) {
+    font-size: 20px;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+
+`;
+
+export const TopBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  img {
+    height: 80px;
+    width: auto;
+  }
+
+  @media (max-width: 900px) {
+    img {
+      height: 50px;
+      width: auto;
+    }
+  }
+
 `;

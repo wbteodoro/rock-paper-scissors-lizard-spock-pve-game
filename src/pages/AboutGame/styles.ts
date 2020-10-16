@@ -11,6 +11,8 @@ export const Content = styled.div`
 
 export const PageText = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
   height: auto;
   color: #fff;
   font-size: 20px;
@@ -20,6 +22,12 @@ export const PageText = styled.div`
   border-radius: 15px;
   margin-bottom: 25px;
 
+  img {
+    align-self: center;
+    height: auto;
+    width: 360px;
+  }
+
   ol {
     margin-left: 40px;
   }
@@ -27,5 +35,10 @@ export const PageText = styled.div`
   @media (max-width: 900px) {
     padding: 20px;
     font-size: 14px;
+
+    img {
+      height: auto;
+      width: 200px;
+    }
   }
 `;
