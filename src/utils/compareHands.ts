@@ -8,7 +8,8 @@ interface Result {
   message: string;
 }
 
-export const compareHands = ({ playerHand, opponentHand }: Hands): Result => {
+export const compareHands = (hands: Hands): Result => {
+  const { playerHand, opponentHand } = hands;
   if (playerHand && opponentHand) {
     if (playerHand === opponentHand)
       return { compareResult: 'Empate', message: 'Ninguém ganhou!' };

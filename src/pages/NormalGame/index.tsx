@@ -61,7 +61,8 @@ const NormalGame: React.FC = () => {
     message: '',
   });
 
-  const handleSelectOption = ({ name, logo }: HandOptionsProps): void => {
+  const handleSelectOption = (handOptionsProps: HandOptionsProps): void => {
+    const { name, logo } = handOptionsProps;
     setPlayerSelectedHand({ name, logo });
 
     const randomIndex = Math.floor(Math.random() * 5);
